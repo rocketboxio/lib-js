@@ -4,7 +4,7 @@ function Rocketbox()
 {
 	var _self = this;
 	var _api_url = "https://www.rocketbox.io/api/v1/";
-
+	
 	this.ajaxX = function() {
 		if (typeof XMLHttpRequest !== 'undefined') {
 			return new XMLHttpRequest();  
@@ -82,79 +82,79 @@ function Rocketbox()
 	this.get = function(key, callback){
 		_self.ajaxPost("get", {"token":app_token, "key":key}, function(results){
 			callback(results);
-		});
+		}, true);
 	}
 
 	this.getAll = function(key, callback){
 		_self.ajaxPost("getAll", {"token":app_token}, function(results){
 			callback(results);
-		});
+		}, true);
 	}
 
 	this.delete = function(key, callback){
 		_self.ajaxPost("delete", {"token":app_token, "key":key}, function(results){
 			callback(results);
-		});
+		}, true);
 	}
 
 	this.set = function(key, value, callback){
 		_self.ajaxPost("set", {"token":app_token, "key":key, "value":value}, function(results){
 			callback(results);
-		});
+		}, true);
 	}
 
 	this.collectionAdd = function(key, object, callback){
 		_self.ajaxPost("collection/add", {"token":app_token, "key":key, "value":JSON.stringify(object)}, function(results){
 			callback(results);
-		});
+		}, true);
 	}
 
 	this.collectionEdit = function(key, object, callback){
 		_self.ajaxPost("collection/edit", {"token":app_token, "key":key, "value":JSON.stringify(object)}, function(results){
 			callback(results);
-		});
+		}, true);
 	}
 
 	this.collectionGet = function(key, callback){
 		_self.ajaxPost("collection/get", {"token":app_token, "key":key}, function(results){
 			callback(results);
-		});
+		}, true);
 	}
 
 	this.collectionGetAll = function(callback){
 		_self.ajaxPost("collection/getAll", {"token":app_token}, function(results){
 			callback(results);
-		});
+		}, true);
 	}
 
 	this.collectionDelete = function(id, callback){
 		_self.ajaxPost("collection/delete", {"token":app_token, "_id":id}, function(results){
 			callback(results);
-		});
+		}, true);
 	}
 
 	this.collectionSearch = function(key, object, callback){
 		_self.ajaxPost("collection/search", {"token":app_token, "key":key, "value":JSON.stringify(object)}, function(results){
 			callback(results);
-		});
+		}, true);
 	}
 
 	this.collectionSearchById = function(id, callback){
 		_self.ajaxPost("collection/searchById", {"token":app_token, "_id":id}, function(results){
 			callback(results);
-		});
+		}, true);
 	}
 
 	this.collectionDrop = function(key, callback){
 		_self.ajaxPost("collection/drop", {"token":app_token, "key":key}, function(results){
 			callback(results);
-		});
+		}, true);
 	}
 
-	this.sendMail = function(to, subject, body, callback){
-		_self.ajaxPost("mail/send", {"token":app_token, "to":to, "subject":subject, "body":body}, function(results){
+	this.sendMail = function(object, callback){
+		_self.ajaxPost("mail/send", {"token":app_token, "value":JSON.stringify(object)}, function(results){
 			callback(results);
-		});
+		}, true);
 	}
 
 	function replaceAll(find, replace, str) {
