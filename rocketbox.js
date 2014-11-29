@@ -157,6 +157,34 @@ function Rocketbox()
 		}, true);
 	}
 
+	this.uploadFile = function(file, progress, callback){
+		if (file != undefined){
+			var formData = new FormData();
+			formData.append('file', file);
+			formData.append('token', app_token);
+
+			var xhr = _self.ajaxX();
+			xhr.open('POST', _api_url + 'uploadFile', true);
+
+			xhr.upload.onprogress = function(e) {
+				if (e.lengthComputable) {
+					var percentage = (e.loaded / e.total) * 100;
+					progress(percentage);
+				}
+			};
+
+			xhr.onerror = function(e) {
+				callback({"success":true,"msg":"Error to upload file"});
+			};
+
+			xhr.send(formData);
+		}
+		else
+		{
+			callback({"success":true,"msg":"File undefined"});
+		}
+	}
+
 	function replaceAll(find, replace, str) {
 		return str.replace(new RegExp(find, 'g'), replace);
 	}
