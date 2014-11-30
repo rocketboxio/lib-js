@@ -173,6 +173,15 @@ function Rocketbox()
 				}
 			};
 
+			xhr.onreadystatechange = function() {
+				if (xhr.readyState == 4) {
+					callback(JSON.parse(xhr.responseText));
+				}
+				else{
+					callback({"success":false,"msg":"Error to upload file"});
+				}
+			};
+
 			xhr.onerror = function(e) {
 				callback({"success":true,"msg":"Error to upload file"});
 			};
@@ -181,7 +190,7 @@ function Rocketbox()
 		}
 		else
 		{
-			callback({"success":true,"msg":"File undefined"});
+			callback({"success":false,"msg":"File undefined"});
 		}
 	}
 
