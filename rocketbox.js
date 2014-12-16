@@ -157,10 +157,11 @@ function Rocketbox()
 		}, true);
 	}
 
-	this.uploadFile = function(file, progress, callback){
+	this.uploadFile = function(object, progress, callback){
 		if (file != undefined){
 			var formData = new FormData();
-			formData.append('file', file);
+			formData.append('file', object.file);
+			formData.append('fileName', object.fileName);
 			formData.append('token', app_token);
 
 			var xhr = _self.ajaxX();
@@ -174,10 +175,10 @@ function Rocketbox()
 			};
 
 			xhr.onreadystatechange = function() {
-				if (xhr.readyState == 4) {
+				if (xhr.readyState == 4 && xhr.status == 200) {
 					callback(JSON.parse(xhr.responseText));
 				}
-				else{
+				else if (xhr.status == 400){
 					callback({"success":false,"msg":"Error to upload file"});
 				}
 			};
