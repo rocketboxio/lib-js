@@ -158,8 +158,11 @@ function Rocketbox()
 	}
 
 	this.uploadFile = function(object, progress, callback){
-		if (file != undefined){
+		if (object.file != undefined){
 			var formData = new FormData();
+			if (object.fileName == undefined){
+				object.fileName = "";
+			}
 			formData.append('file', object.file);
 			formData.append('fileName', object.fileName);
 			formData.append('token', app_token);
