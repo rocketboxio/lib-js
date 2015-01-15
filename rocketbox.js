@@ -3,7 +3,7 @@ var app_token = "-- YOUR TOKEN HERE --";
 function Rocketbox()
 {
 	var _self = this;
-	var _api_url = "https://www.rocketbox.io/api/v1/";
+	var _api_url = "https://rocketbox.io/api/v1/";
 	
 	this.ajaxX = function() {
 		if (typeof XMLHttpRequest !== 'undefined') {
