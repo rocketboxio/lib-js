@@ -139,6 +139,12 @@ function Rocketbox()
 		}, true);
 	}
 
+	this.collectionAdvancedSearch = function(key, object_or, object_and, callback){
+		_self.ajaxPost("collection/search", {"token":app_token, "key":key, "value_or":JSON.stringify(object_or), "value_and":JSON.stringify(object_and)}, function(results){
+			callback(results);
+		}, true);
+	}
+
 	this.collectionSearchById = function(id, callback){
 		_self.ajaxPost("collection/searchById", {"token":app_token, "_id":id}, function(results){
 			callback(results);
