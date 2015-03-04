@@ -121,6 +121,12 @@ function Rocketbox()
 		}, true);
 	}
 
+	this.collectionGetCount = function(key, callback){
+		_self.ajaxPost("collection/getCount", {"token":app_token, "key":key}, function(results){
+			callback(results);
+		}, true);
+	}
+
 	this.collectionGetAll = function(callback){
 		_self.ajaxPost("collection/getAll", {"token":app_token}, function(results){
 			callback(results);
@@ -159,6 +165,12 @@ function Rocketbox()
 
 	this.sendMail = function(object, callback){
 		_self.ajaxPost("mail/send", {"token":app_token, "value":JSON.stringify(object)}, function(results){
+			callback(results);
+		}, true);
+	}
+
+	this.deleteFile = function(file, callback){
+		_self.ajaxPost("deleteFile", {"token":app_token, "file":file}, function(results){
 			callback(results);
 		}, true);
 	}
